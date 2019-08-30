@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseUri: "http://localhost:54359"
+  // apiBaseUri: "http://localhost:54359"
+  apiBaseUri: "http://localhost/ProjectManager.API"
 };
 
 /*
