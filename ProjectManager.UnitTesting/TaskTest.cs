@@ -117,7 +117,7 @@ namespace ProjectManager.UnitTest
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(baseUri);
 
-            var response = client.GetAsync("/api/task/gettasksbyprojectid/" + projectId.ToString()).Result;
+            var response = client.GetAsync("/ProjectManager.API/api/task/gettasksbyprojectid/" + projectId.ToString()).Result;
             var tasks = response.Content.ReadAsAsync<List<TaskModel>>().Result;
             return tasks;
         }
@@ -127,7 +127,7 @@ namespace ProjectManager.UnitTest
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(baseUri);
 
-            var response = client.GetAsync("/api/task/gettaskbyid/" + id.ToString()).Result;
+            var response = client.GetAsync("/ProjectManager.API/api/task/gettaskbyid/" + id.ToString()).Result;
             var task = response.Content.ReadAsAsync<TaskModel>().Result;
             return task;
         }
@@ -137,7 +137,7 @@ namespace ProjectManager.UnitTest
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(baseUri);
 
-            var response = client.PostAsJsonAsync<TaskModel>("/api/task/save", model).Result;
+            var response = client.PostAsJsonAsync<TaskModel>("/ProjectManager.API/api/task/save", model).Result;
             var id = response.Content.ReadAsAsync<int>().Result;
             return id;
         }
@@ -149,7 +149,7 @@ namespace ProjectManager.UnitTest
 
             TaskModel model = new TaskModel();
             model.TaskId = id;
-            var response = client.PostAsJsonAsync<TaskModel>("/api/task/complete", model).Result;
+            var response = client.PostAsJsonAsync<TaskModel>("/ProjectManager.API/api/task/complete", model).Result;
             var status = response.Content.ReadAsAsync<bool>().Result;
             return status;
         }

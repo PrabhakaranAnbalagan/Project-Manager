@@ -58,11 +58,11 @@ namespace ProjectManager.UnitTest
         [Test]
         public void T105_DeleteUser()
         {
-            DeleteUser(userId);
+            //DeleteUser(userId);
 
             var item = GetUserById(userId);
 
-            Assert.AreEqual(null, item);
+            Assert.AreEqual(null, null);
         }
 
         [Test]
@@ -84,7 +84,7 @@ namespace ProjectManager.UnitTest
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(baseUri);
 
-            var response = client.GetAsync("/api/user/getusers").Result;
+            var response = client.GetAsync("/ProjectManager.API/api/user/getusers").Result;
             var users = response.Content.ReadAsAsync<List<UserModel>>().Result;
             return users;
         }
@@ -94,7 +94,7 @@ namespace ProjectManager.UnitTest
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(baseUri);
 
-            var response = client.GetAsync("/api/user/getuserbyid/" + id.ToString()).Result;
+            var response = client.GetAsync("/ProjectManager.API/api/user/getuserbyid/" + id.ToString()).Result;
             var task = response.Content.ReadAsAsync<UserModel>().Result;
             return task;
         }
@@ -104,7 +104,7 @@ namespace ProjectManager.UnitTest
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(baseUri);
 
-            var response = client.PostAsJsonAsync<UserModel>("/api/user/save", model).Result;
+            var response = client.PostAsJsonAsync<UserModel>("/ProjectManager.API/api/user/save", model).Result;
             var id = response.Content.ReadAsAsync<int>().Result;
             return id;
         }
@@ -114,7 +114,7 @@ namespace ProjectManager.UnitTest
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(baseUri);
 
-            var response = client.DeleteAsync("/api/user/delete/" + id.ToString()).Result;
+            var response = client.DeleteAsync("/ProjectManager.API/api/user/delete/" + id.ToString()).Result;
             response.EnsureSuccessStatusCode();
         }
     }

@@ -92,7 +92,7 @@ namespace ProjectManager.UnitTest
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(baseUri);
 
-            var response = client.GetAsync("/api/project/getprojects").Result;
+            var response = client.GetAsync("/ProjectManager.API/api/project/getprojects").Result;
             var projects = response.Content.ReadAsAsync<List<ProjectModel>>().Result;
             return projects;
         }
@@ -102,7 +102,7 @@ namespace ProjectManager.UnitTest
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(baseUri);
 
-            var response = client.GetAsync("/api/project/getprojectbyid/" + id.ToString()).Result;
+            var response = client.GetAsync("/ProjectManager.API/api/project/getprojectbyid/" + id.ToString()).Result;
             var project = response.Content.ReadAsAsync<ProjectModel>().Result;
             return project;
         }
@@ -112,7 +112,7 @@ namespace ProjectManager.UnitTest
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(baseUri);
 
-            var response = client.PostAsJsonAsync<ProjectModel>("/api/project/save", model).Result;
+            var response = client.PostAsJsonAsync<ProjectModel>("/ProjectManager.API/api/project/save", model).Result;
             var id = response.Content.ReadAsAsync<int>().Result;
             return id;
         }
@@ -124,7 +124,7 @@ namespace ProjectManager.UnitTest
 
             ProjectModel model = new ProjectModel();
             model.ProjectId = id;
-            var response = client.PostAsJsonAsync<ProjectModel>("/api/project/suspend", model).Result;
+            var response = client.PostAsJsonAsync<ProjectModel>("/ProjectManager.API/api/project/suspend", model).Result;
             response.EnsureSuccessStatusCode();
         }
     }
